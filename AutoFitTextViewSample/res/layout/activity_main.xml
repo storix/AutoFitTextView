@@ -22,7 +22,7 @@
             android:layout_gravity="fill_horizontal"
             android:ems="10"
             android:hint="content"
-            android:text="content text sample"/>
+            android:text="content text sample \n new line"/>
 
         <Button
             android:id="@+id/minusLineCountButton"
