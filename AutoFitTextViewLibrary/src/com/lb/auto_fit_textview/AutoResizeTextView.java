@@ -108,7 +108,7 @@ public class AutoResizeTextView extends AppCompatTextView {
     }
 
     public boolean isValidWordWrap(char before, char after) {
-        return before == ' ' || before == '-';
+        return before == ' ' || before == '-' || before == '\n';
     }
 
     @Override
