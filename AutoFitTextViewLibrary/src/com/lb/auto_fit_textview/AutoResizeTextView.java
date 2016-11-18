@@ -84,18 +84,17 @@ public class AutoResizeTextView extends AppCompatTextView {
                     textRect.bottom = layout.getHeight();
                     int maxWidth = -1;
                     int lineCount = layout.getLineCount();
-                    for (int i = 0; i < lineCount; i++) {
+                    for (int i = 0; i < lineCount; ++i) {
                         int end = layout.getLineEnd(i);
-                        if (i < lineCount - 1 && end > 0 && !isValidWordWrap(text.charAt(end - 1), text.charAt(end)))
+                        if (i < lineCount - 1 && end > 0 && (end -1) < text.length() && !isValidWordWrap(text.charAt(end - 1)))
                             return 1;
                         if (maxWidth < layout.getLineRight(i) - layout.getLineLeft(i))
                             maxWidth = (int) layout.getLineRight(i) - (int) layout.getLineLeft(i);
                     }
-                    //for (int i = 0; i < layout.getLineCount(); i++)
-                    //    if (maxWidth < layout.getLineRight(i) - layout.getLineLeft(i))
-                    //        maxWidth = (int) layout.getLineRight(i) - (int) layout.getLineLeft(i);
+
                     textRect.right = maxWidth;
                 }
+
                 textRect.offsetTo(0, 0);
                 if (availableSpace.contains(textRect))
                     // may be too small, don't worry we will find the best match
@@ -107,7 +106,7 @@ public class AutoResizeTextView extends AppCompatTextView {
         _initialized = true;
     }
 
-    public boolean isValidWordWrap(char before, char after) {
+    public boolean isValidWordWrap(char before) {
         return before == ' ' || before == '-' || before == '\n';
     }
 
